@@ -470,6 +470,11 @@ public class TestRomHandler extends AbstractRomHandler {
     }
 
     @Override
+    public void loadPokemonStats() {
+        throw new UnsupportedOperationException();
+    }
+
+    @Override
     public boolean saveRom(String filename, long seed, boolean saveAsDirectory) {
         throw new UnsupportedOperationException("File functions cannot be called in TestRomHandler");
     }
