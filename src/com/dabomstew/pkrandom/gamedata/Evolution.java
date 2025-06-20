@@ -46,7 +46,7 @@ public class Evolution implements Comparable<Evolution> {
         this.from = original.from;
         this.to = original.to;
         this.type = original.type;
-        this.extraInfo = original.extraInfo;;
+        this.extraInfo = original.extraInfo;
         this.forme = original.forme;
     }
 
