@@ -321,6 +321,17 @@
                       <toolTipText resource-bundle="com/dabomstew/pkrandom/gui/Bundle" key="GUI.pbsAllMediumFastRadioButton.toolTipText"/>
                     </properties>
                   </component>
+                  <component id="d761d" class="javax.swing.JRadioButton" binding="pbsRandomCompletelyRadioButton">
+                    <constraints>
+                      <grid row="4" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+                      <gridbag weightx="0.0" weighty="0.0"/>
+                    </constraints>
+                    <properties>
+                      <enabled value="false"/>
+                      <text resource-bundle="com/dabomstew/pkrandom/gui/Bundle" key="GUI.pbsRandomCompletelyRadioButton.text"/>
+                      <toolTipText resource-bundle="com/dabomstew/pkrandom/gui/Bundle" key="GUI.pbsRandomCompletelyRadioButton.toolTipText"/>
+                    </properties>
+                  </component>
                 </children>
               </grid>
               <hspacer id="17e6a">
@@ -4678,6 +4689,7 @@
       <member id="4535b"/>
       <member id="e8460"/>
       <member id="576dd"/>
+      <member id="d761d"/>
     </group>
     <group name="expCurveButtonGroup">
       <member id="8625b"/>

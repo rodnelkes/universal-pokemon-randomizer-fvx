@@ -341,6 +341,12 @@ public class SettingsUpdater {
             insertExtraByte(61, (byte) 0);
         }
 
+        if (oldVersion < Version.FVX_1_2_3.id)
+        {
+            // add byte for more randomization options
+            insertExtraByte(62, (byte) 0);
+        }
+
         // fix checksum
         CRC32 checksum = new CRC32();
         checksum.update(dataBlock, 0, actualDataLength - 8);

@@ -134,6 +134,22 @@ public class Species implements Comparable<Species> {
         speed = stats.get(shuffledStatsOrder.get(5));
     }
 
+    private int randomBS(double baseStatWeight) {
+        return (int) Math.round(baseStatWeight * 254) + 1;
+    }
+
+    public void randomizeStatsCompletely(Random random) {
+        double hpW = random.nextDouble(), atkW = random.nextDouble(), defW = random.nextDouble(),
+                spaW = random.nextDouble(), spdW = random.nextDouble(), speW = random.nextDouble();
+
+        hp = randomBS(hpW);
+        attack = randomBS(atkW);
+        defense = randomBS(defW);
+        spatk = randomBS(spaW);
+        spdef = randomBS(spdW);
+        speed = randomBS(speW);
+    }
+
     public void randomizeStatsWithinBST(Random random) {
         if (number == SpeciesIDs.shedinja) {
             // Shedinja is horribly broken unless we restrict him to 1HP.

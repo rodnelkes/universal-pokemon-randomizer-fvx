@@ -52,7 +52,7 @@ public class Settings {
 
     public static final int VERSION = Version.VERSION;
 
-    public static final int LENGTH_OF_SETTINGS_DATA = 62;
+    public static final int LENGTH_OF_SETTINGS_DATA = 63;
 
     private CustomNamesSet customNames;
 
@@ -71,7 +71,7 @@ public class Settings {
     private boolean dualTypeOnly;
 
     public enum BaseStatisticsMod {
-        UNCHANGED, SHUFFLE, RANDOM,
+        UNCHANGED, SHUFFLE, RANDOM, RANDOM_COMPLETELY
     }
 
     public enum ExpCurveMod {
@@ -707,6 +707,9 @@ public class Settings {
                 diverseTypesForRegularTrainers,
                 false, false, false, false, false));
 
+        // 62 more randomization
+        out.write(makeByteSelected(baseStatisticsMod == BaseStatisticsMod.RANDOM_COMPLETELY));
+
         try {
             byte[] romName = this.romName.getBytes(StandardCharsets.US_ASCII);
             out.write(romName.length);
@@ -744,10 +747,15 @@ public class Settings {
         settings.setMakeEvolutionsEasier(restoreState(data[0], 5));
         settings.setRemoveTimeBasedEvolutions(restoreState(data[0], 6));
 
-        settings.setBaseStatisticsMod(restoreEnum(BaseStatisticsMod.class, data[1], 3, // UNCHANGED
-                2, // SHUFFLE
-                1 // RANDOM
-        ));
+        if (restoreState(data[62], 0)) {
+            settings.setBaseStatisticsMod(BaseStatisticsMod.RANDOM_COMPLETELY);
+        } else {
+            settings.setBaseStatisticsMod(restoreEnum(BaseStatisticsMod.class, data[1], 3, // UNCHANGED
+                    2, // SHUFFLE
+                    1 // RANDOM
+            ));
+        }
+
         settings.setStandardizeEXPCurves(restoreState(data[1], 4));
         settings.setBaseStatsFollowEvolutions(restoreState(data[1], 0));
         settings.setUpdateBaseStats(restoreState(data[1], 5));

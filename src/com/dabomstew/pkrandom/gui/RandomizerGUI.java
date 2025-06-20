@@ -70,6 +70,7 @@ public class RandomizerGUI {
     private JRadioButton pbsUnchangedRadioButton;
     private JRadioButton pbsShuffleRadioButton;
     private JRadioButton pbsRandomRadioButton;
+    private JRadioButton pbsRandomCompletelyRadioButton;
     private JRadioButton pbsLegendariesSlowRadioButton;
     private JRadioButton pbsStrongLegendariesSlowRadioButton;
     private JRadioButton pbsAllMediumFastRadioButton;
@@ -477,6 +478,7 @@ public class RandomizerGUI {
         pbsUnchangedRadioButton.addActionListener(e -> enableOrDisableSubControls());
         pbsShuffleRadioButton.addActionListener(e -> enableOrDisableSubControls());
         pbsRandomRadioButton.addActionListener(e -> enableOrDisableSubControls());
+        pbsRandomCompletelyRadioButton.addActionListener(e -> enableOrDisableSubControls());
         pbsFollowMegaEvosCheckBox.addActionListener(e -> enableOrDisableSubControls());
         pbsFollowEvolutionsCheckBox.addActionListener(e -> enableOrDisableSubControls());
         pbsStandardizeEXPCurvesCheckBox.addActionListener(e -> enableOrDisableSubControls());
@@ -1569,6 +1571,7 @@ public class RandomizerGUI {
         tpRandomizeTrainerClassNamesCheckBox.setSelected(settings.isRandomizeTrainerClassNames());
         ptIsDualTypeCheckBox.setSelected(settings.isDualTypeOnly());
 
+        pbsRandomCompletelyRadioButton.setSelected(settings.getBaseStatisticsMod() == Settings.BaseStatisticsMod.RANDOM_COMPLETELY);
         pbsRandomRadioButton.setSelected(settings.getBaseStatisticsMod() == Settings.BaseStatisticsMod.RANDOM);
         pbsShuffleRadioButton.setSelected(settings.getBaseStatisticsMod() == Settings.BaseStatisticsMod.SHUFFLE);
         pbsUnchangedRadioButton.setSelected(settings.getBaseStatisticsMod() == Settings.BaseStatisticsMod.UNCHANGED);
@@ -1880,7 +1883,7 @@ public class RandomizerGUI {
         settings.setRandomizeTrainerClassNames(tpRandomizeTrainerClassNamesCheckBox.isSelected());
 
         settings.setBaseStatisticsMod(pbsUnchangedRadioButton.isSelected(), pbsShuffleRadioButton.isSelected(),
-                pbsRandomRadioButton.isSelected());
+                pbsRandomRadioButton.isSelected(), pbsRandomCompletelyRadioButton.isSelected());
         settings.setBaseStatsFollowEvolutions(pbsFollowEvolutionsCheckBox.isSelected());
         settings.setUpdateBaseStats(pbsUpdateBaseStatsCheckBox.isSelected() && pbsUpdateBaseStatsCheckBox.isVisible());
         settings.setUpdateBaseStatsToGeneration(pbsUpdateComboBox.getSelectedIndex() + (Math.max(6,romHandler.generationOfPokemon()+1)));
@@ -2210,7 +2213,7 @@ public class RandomizerGUI {
 
         // the buttons in the main part of the gui (randomization options):
 
-        setInitialButtonState(pbsUnchangedRadioButton, pbsShuffleRadioButton, pbsRandomRadioButton,
+        setInitialButtonState(pbsUnchangedRadioButton, pbsShuffleRadioButton, pbsRandomRadioButton, pbsRandomCompletelyRadioButton,
 				pbsLegendariesSlowRadioButton, pbsStrongLegendariesSlowRadioButton, pbsAllMediumFastRadioButton,
 				pbsStandardizeEXPCurvesCheckBox, pbsFollowEvolutionsCheckBox, pbsUpdateBaseStatsCheckBox,
 				pbsFollowMegaEvosCheckBox, pbsAssignEvoStatsRandomlyCheckBox);
@@ -2531,6 +2534,7 @@ public class RandomizerGUI {
             pbsUnchangedRadioButton.setSelected(true);
             pbsShuffleRadioButton.setEnabled(true);
             pbsRandomRadioButton.setEnabled(true);
+            pbsRandomCompletelyRadioButton.setEnabled(true);
 
             pbsStandardizeEXPCurvesCheckBox.setEnabled(true);
             pbsLegendariesSlowRadioButton.setSelected(true);
@@ -3085,7 +3089,7 @@ public class RandomizerGUI {
             enableButtons(pbsFollowEvolutionsCheckBox, pbsFollowMegaEvosCheckBox);
         }
 
-        if (pbsRandomRadioButton.isSelected()) {
+        if (pbsRandomRadioButton.isSelected() || pbsRandomCompletelyRadioButton.isSelected()) {
             if (pbsFollowEvolutionsCheckBox.isSelected() || pbsFollowMegaEvosCheckBox.isSelected()) {
                 enableButtons(pbsAssignEvoStatsRandomlyCheckBox);
             } else {
@@ -3093,6 +3097,12 @@ public class RandomizerGUI {
             }
         } else {
             disableAndDeselectButtons(pbsAssignEvoStatsRandomlyCheckBox);
+        }
+
+        if (pbsRandomCompletelyRadioButton.isSelected()) {
+            disableAndDeselectButtons(pbsUpdateBaseStatsCheckBox);
+        } else {
+            enableButtons(pbsUpdateBaseStatsCheckBox);
         }
 
         if (pbsStandardizeEXPCurvesCheckBox.isSelected()) {

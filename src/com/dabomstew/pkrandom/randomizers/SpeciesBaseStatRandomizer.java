@@ -35,12 +35,21 @@ public class SpeciesBaseStatRandomizer extends Randomizer {
         changesMade = true;
     }
 
+    private BasicSpeciesAction<Species> evaluateBpActions(boolean randomizeStatsCompletely) {
+        if (randomizeStatsCompletely) {
+            return pk -> pk.randomizeStatsCompletely(random);
+        } else {
+            return pk -> pk.randomizeStatsWithinBST(random);
+        }
+    }
+
     public void randomizeSpeciesStats() {
         boolean evolutionSanity = settings.isBaseStatsFollowEvolutions();
         boolean megaEvolutionSanity = settings.isBaseStatsFollowMegaEvolutions();
         boolean assignEvoStatsRandomly = settings.isAssignEvoStatsRandomly();
+        boolean randomizeStatsCompletely = settings.getBaseStatisticsMod() == Settings.BaseStatisticsMod.RANDOM_COMPLETELY;
 
-        BasicSpeciesAction<Species> bpAction = pk -> pk.randomizeStatsWithinBST(random);
+        BasicSpeciesAction<Species> bpAction = evaluateBpActions(randomizeStatsCompletely);
         EvolvedSpeciesAction<Species> randomEpAction = (evFrom, evTo, toMonIsFinalEvo) -> evTo
                 .assignNewStatsForEvolution(evFrom, random);
         EvolvedSpeciesAction<Species> copyEpAction = (evFrom, evTo, toMonIsFinalEvo) -> evTo

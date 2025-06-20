@@ -374,6 +374,7 @@ public class GameRandomizer {
                 speciesBSRandomizer.shuffleSpeciesStats();
                 break;
             case RANDOM:
+            case RANDOM_COMPLETELY:
                 speciesBSRandomizer.randomizeSpeciesStats();
         }
     }
