@@ -254,6 +254,7 @@ public class GameRandomizer {
         maybeRandomizeWildHeldItems();
         maybeRandomizeSpeciesBaseStats();
         maybeRandomizeEVYields();
+        maybeRandomizeCatchRate();
         maybeRandomizeSpeciesAbilities();
 
         maybeApplyEvolutionImprovements();
@@ -383,6 +384,12 @@ public class GameRandomizer {
     private void maybeRandomizeEVYields() {
         if (settings.isRandomizeEVYields()) {
             speciesBSRandomizer.randomizeEvYields();
+        }
+    }
+
+    private void maybeRandomizeCatchRate() {
+        if (settings.isRandomizeCatchRate()) {
+            speciesBSRandomizer.randomizeCatchRate();
         }
     }
 

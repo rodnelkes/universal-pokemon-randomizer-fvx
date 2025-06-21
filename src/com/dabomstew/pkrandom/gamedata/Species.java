@@ -172,6 +172,12 @@ public class Species implements Comparable<Species> {
         evSpeedYield = randomEvYield(evSpeedYieldW);
     }
 
+    public void randomizeCatchRate(Random random) {
+        double catchRateW = random.nextDouble();
+        catchRate = randomBS(catchRateW);
+    }
+
+
     public void randomizeStatsWithinBST(Random random) {
         if (number == SpeciesIDs.shedinja) {
             // Shedinja is horribly broken unless we restrict him to 1HP.

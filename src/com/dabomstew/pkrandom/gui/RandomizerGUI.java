@@ -78,6 +78,7 @@ public class RandomizerGUI {
     private JCheckBox pbsFollowEvolutionsCheckBox;
     private JCheckBox pbsUpdateBaseStatsCheckBox;
     private JCheckBox pbsRandomizeEVYieldsCheckBox;
+    private JCheckBox pbsRandomizeCatchRateCheckBox;
     private JCheckBox ptIsDualTypeCheckBox;
     private JRadioButton ptUnchangedRadioButton;
     private JRadioButton ptRandomFollowEvolutionsRadioButton;
@@ -1580,6 +1581,7 @@ public class RandomizerGUI {
         pbsUpdateBaseStatsCheckBox.setSelected(settings.isUpdateBaseStats());
         pbsUpdateComboBox.setSelectedIndex(Math.max(0,settings.getUpdateBaseStatsToGeneration() - (Math.max(6,romHandler.generationOfPokemon()+1))));
         pbsRandomizeEVYieldsCheckBox.setSelected(settings.isRandomizeEVYields());
+        pbsRandomizeCatchRateCheckBox.setSelected(settings.isRandomizeCatchRate());
         pbsStandardizeEXPCurvesCheckBox.setSelected(settings.isStandardizeEXPCurves());
         pbsLegendariesSlowRadioButton.setSelected(settings.getExpCurveMod() == Settings.ExpCurveMod.LEGENDARIES);
         pbsStrongLegendariesSlowRadioButton.setSelected(settings.getExpCurveMod() == Settings.ExpCurveMod.STRONG_LEGENDARIES);
@@ -1890,6 +1892,7 @@ public class RandomizerGUI {
         settings.setUpdateBaseStats(pbsUpdateBaseStatsCheckBox.isSelected() && pbsUpdateBaseStatsCheckBox.isVisible());
         settings.setUpdateBaseStatsToGeneration(pbsUpdateComboBox.getSelectedIndex() + (Math.max(6,romHandler.generationOfPokemon()+1)));
         settings.setRandomizeEVYields(pbsRandomizeEVYieldsCheckBox.isSelected() && pbsRandomizeEVYieldsCheckBox.isVisible());
+        settings.setRandomizeCatchRate(pbsRandomizeCatchRateCheckBox.isSelected() && pbsRandomizeCatchRateCheckBox.isVisible());
         settings.setStandardizeEXPCurves(pbsStandardizeEXPCurvesCheckBox.isSelected());
         settings.setExpCurveMod(pbsLegendariesSlowRadioButton.isSelected(), pbsStrongLegendariesSlowRadioButton.isSelected(),
                 pbsAllMediumFastRadioButton.isSelected());
@@ -2216,10 +2219,11 @@ public class RandomizerGUI {
 
         // the buttons in the main part of the gui (randomization options):
 
-        setInitialButtonState(pbsUnchangedRadioButton, pbsShuffleRadioButton, pbsRandomRadioButton, pbsRandomCompletelyRadioButton,
-				pbsLegendariesSlowRadioButton, pbsStrongLegendariesSlowRadioButton, pbsAllMediumFastRadioButton,
-				pbsStandardizeEXPCurvesCheckBox, pbsFollowEvolutionsCheckBox, pbsUpdateBaseStatsCheckBox,
-                pbsRandomizeEVYieldsCheckBox, pbsFollowMegaEvosCheckBox, pbsAssignEvoStatsRandomlyCheckBox);
+        setInitialButtonState(pbsUnchangedRadioButton, pbsShuffleRadioButton, pbsRandomRadioButton,
+                pbsRandomCompletelyRadioButton, pbsLegendariesSlowRadioButton, pbsStrongLegendariesSlowRadioButton,
+                pbsAllMediumFastRadioButton, pbsStandardizeEXPCurvesCheckBox, pbsFollowEvolutionsCheckBox,
+                pbsUpdateBaseStatsCheckBox, pbsRandomizeEVYieldsCheckBox, pbsRandomizeCatchRateCheckBox,
+                pbsFollowMegaEvosCheckBox, pbsAssignEvoStatsRandomlyCheckBox);
 		pbsEXPCurveComboBox.setVisible(true);
 		pbsEXPCurveComboBox.setEnabled(false);
 		pbsEXPCurveComboBox.setSelectedIndex(0);
@@ -2550,6 +2554,8 @@ public class RandomizerGUI {
             } else {
                 pbsRandomizeEVYieldsCheckBox.setVisible(false);
             }
+
+            pbsRandomizeCatchRateCheckBox.setEnabled(true);
 
             ExpCurve[] expCurves = getEXPCurvesForGeneration(pokemonGeneration);
             String[] expCurveNames = new String[expCurves.length];

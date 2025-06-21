@@ -85,6 +85,7 @@ public class Settings {
     private boolean updateBaseStats;
     private int updateBaseStatsToGeneration;
     private boolean randomizeEVYields;
+    private boolean randomizeCatchRate;
     private boolean standardizeEXPCurves;
     private ExpCurve selectedEXPCurve;
     private ExpCurveMod expCurveMod = ExpCurveMod.LEGENDARIES;
@@ -709,7 +710,8 @@ public class Settings {
                 false, false, false, false, false));
 
         // 62 more randomization
-        out.write(makeByteSelected(baseStatisticsMod == BaseStatisticsMod.RANDOM_COMPLETELY, randomizeEVYields));
+        out.write(makeByteSelected(baseStatisticsMod == BaseStatisticsMod.RANDOM_COMPLETELY, randomizeEVYields,
+                randomizeCatchRate));
 
         try {
             byte[] romName = this.romName.getBytes(StandardCharsets.US_ASCII);
@@ -1066,6 +1068,7 @@ public class Settings {
         settings.setDiverseTypesForRegularTrainers(restoreState(data[61], 2));
 
         settings.setRandomizeEVYields(restoreState(data[62], 1));
+        settings.setRandomizeCatchRate(restoreState(data[62], 2));
 
         int romNameLength = data[LENGTH_OF_SETTINGS_DATA] & 0xFF;
         String romName = new String(data, LENGTH_OF_SETTINGS_DATA + 1, romNameLength, StandardCharsets.US_ASCII);
@@ -1430,6 +1433,15 @@ public class Settings {
     public void setRandomizeEVYields(boolean randomizeEVYields) {
         this.randomizeEVYields = randomizeEVYields;
     }
+
+    public boolean isRandomizeCatchRate() {
+        return randomizeCatchRate;
+    }
+
+    public void setRandomizeCatchRate(boolean randomizeCatchRate) {
+        this.randomizeCatchRate = randomizeCatchRate;
+    }
+
 
     public AbilitiesMod getAbilitiesMod() {
         return abilitiesMod;
