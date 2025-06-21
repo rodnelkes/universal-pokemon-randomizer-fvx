@@ -84,6 +84,7 @@ public class Settings {
     private boolean assignEvoStatsRandomly;
     private boolean updateBaseStats;
     private int updateBaseStatsToGeneration;
+    private boolean randomizeEVYields;
     private boolean standardizeEXPCurves;
     private ExpCurve selectedEXPCurve;
     private ExpCurveMod expCurveMod = ExpCurveMod.LEGENDARIES;
@@ -708,7 +709,7 @@ public class Settings {
                 false, false, false, false, false));
 
         // 62 more randomization
-        out.write(makeByteSelected(baseStatisticsMod == BaseStatisticsMod.RANDOM_COMPLETELY));
+        out.write(makeByteSelected(baseStatisticsMod == BaseStatisticsMod.RANDOM_COMPLETELY, randomizeEVYields));
 
         try {
             byte[] romName = this.romName.getBytes(StandardCharsets.US_ASCII);
@@ -1064,6 +1065,8 @@ public class Settings {
         settings.setDiverseTypesForImportantTrainers(restoreState(data[61], 1));
         settings.setDiverseTypesForRegularTrainers(restoreState(data[61], 2));
 
+        settings.setRandomizeEVYields(restoreState(data[62], 1));
+
         int romNameLength = data[LENGTH_OF_SETTINGS_DATA] & 0xFF;
         String romName = new String(data, LENGTH_OF_SETTINGS_DATA + 1, romNameLength, StandardCharsets.US_ASCII);
         settings.setRomName(romName);
@@ -1418,6 +1421,14 @@ public class Settings {
 
     public void setUpdateBaseStatsToGeneration(int generation) {
         this.updateBaseStatsToGeneration = generation;
+    }
+
+    public boolean isRandomizeEVYields() {
+        return randomizeEVYields;
+    }
+
+    public void setRandomizeEVYields(boolean randomizeEVYields) {
+        this.randomizeEVYields = randomizeEVYields;
     }
 
     public AbilitiesMod getAbilitiesMod() {

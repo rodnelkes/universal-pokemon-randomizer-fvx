@@ -581,6 +581,12 @@ public class RandomizationLogger {
                     getBS("Log.psta.defense"), getBS("Log.psta.spatk"),
                     getBS("Log.psta.spdef"), getBS("Log.psta.speed"));
         }
+        if (romHandler.generationOfPokemon() >= 3) {
+            log.printf("|%6s|%6s|%6s|%6s|%6s|%6s",
+                    getBS("Log.psta.evHp"), getBS("Log.psta.evAttack"),
+                    getBS("Log.psta.evDefense"), getBS("Log.psta.evSpatk"),
+                    getBS("Log.psta.evSpdef"), getBS("Log.psta.evSpeed"));
+        }
         for (int i = 0; i < romHandler.abilitiesPerSpecies(); i++) {
             log.printf("|%-" + abilityLen + "s", getBS("Log.psta.ability" + (i + 1)));
         }
@@ -610,6 +616,12 @@ public class RandomizationLogger {
                         pk.getHp(), pk.getAttack(),
                         pk.getDefense(), pk.getSpatk(),
                         pk.getSpdef(), pk.getSpeed());
+            }
+            if (romHandler.generationOfPokemon() >= 3) {
+                log.printf("|%6s|%6s|%6s|%6s|%6s|%6s",
+                        pk.getEvHpYield(), pk.getEvAttackYield(),
+                        pk.getEvDefenseYield(), pk.getEvSpatkYield(),
+                        pk.getEvSpdefYield(), pk.getEvSpeedYield());
             }
             if (romHandler.abilitiesPerSpecies() >= 1) {
                 log.printf("|%-" + abilityLen + "s", romHandler.abilityName(pk.getAbility1()));

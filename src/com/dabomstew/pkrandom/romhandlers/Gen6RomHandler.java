@@ -254,6 +254,16 @@ public class Gen6RomHandler extends Abstract3DSRomHandler {
             pkmn.setSecondaryType(null);
         }
         pkmn.setCatchRate(stats[Gen6Constants.bsCatchRateOffset] & 0xFF);
+
+        // EV Yield
+        int evYields = FileFunctions.read2ByteInt(stats, Gen6Constants.bsEVYieldOffset);
+        pkmn.setEvHpYield(evYields & 0x3);
+        pkmn.setEvAttackYield(evYields >> 2 & 0x3);
+        pkmn.setEvDefenseYield(evYields >> 4 & 0x3);
+        pkmn.setEvSpeedYield(evYields >> 6 & 0x3);
+        pkmn.setEvSpatkYield(evYields >> 8 & 0x3);
+        pkmn.setEvSpdefYield(evYields >> 10 & 0x3);
+
         pkmn.setGrowthCurve(ExpCurve.fromByte(stats[Gen6Constants.bsGrowthCurveOffset]));
 
         pkmn.setAbility1(stats[Gen6Constants.bsAbility1Offset] & 0xFF);
@@ -620,6 +630,16 @@ public class Gen6RomHandler extends Abstract3DSRomHandler {
             stats[Gen6Constants.bsSecondaryTypeOffset] = Gen6Constants.typeToByte(pkmn.getSecondaryType(false));
         }
         stats[Gen6Constants.bsCatchRateOffset] = (byte) pkmn.getCatchRate();
+
+        // EV Yield
+        int evYields = (pkmn.getEvHpYield() & 0x3)
+                | ((pkmn.getEvAttackYield() & 0x3) << 2)
+                | ((pkmn.getEvDefenseYield() & 0x3) << 4)
+                | ((pkmn.getEvSpeedYield() & 0x3) << 6)
+                | ((pkmn.getEvSpatkYield() & 0x3) << 8)
+                | ((pkmn.getEvSpdefYield() & 0x3) << 10);
+        FileFunctions.write2ByteInt(stats, Gen6Constants.bsEVYieldOffset, evYields);
+
         stats[Gen6Constants.bsGrowthCurveOffset] = pkmn.getGrowthCurve().toByte();
 
         stats[Gen6Constants.bsAbility1Offset] = (byte) pkmn.getAbility1();

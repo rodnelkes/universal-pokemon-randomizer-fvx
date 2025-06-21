@@ -72,6 +72,12 @@ public class Species implements Comparable<Species> {
     private int ability3;
 
     private int catchRate;
+    private int evHpYield;
+    private int evAttackYield;
+    private int evDefenseYield;
+    private int evSpatkYield;
+    private int evSpdefYield;
+    private int evSpeedYield;
     private int expYield;
 
     private int guaranteedHeldItem;
@@ -148,6 +154,22 @@ public class Species implements Comparable<Species> {
         spatk = randomBS(spaW);
         spdef = randomBS(spdW);
         speed = randomBS(speW);
+    }
+
+    private int randomEvYield(double evYieldWeight) {
+        return (int) Math.round(evYieldWeight * 3);
+    }
+
+    public void randomizeEvYields(Random random) {
+        double evHpYieldW = random.nextDouble(), evAttackYieldW = random.nextDouble(), evDefenseYieldW = random.nextDouble(),
+                evSpatkYieldW = random.nextDouble(), evSpdefYieldW = random.nextDouble(), evSpeedYieldW = random.nextDouble();
+
+        evHpYield = randomEvYield(evHpYieldW);
+        evAttackYield = randomEvYield(evAttackYieldW);
+        evDefenseYield = randomEvYield(evDefenseYieldW);
+        evSpatkYield = randomEvYield(evSpatkYieldW);
+        evSpdefYield = randomEvYield(evSpdefYieldW);
+        evSpeedYield = randomEvYield(evSpeedYieldW);
     }
 
     public void randomizeStatsWithinBST(Random random) {
@@ -950,6 +972,53 @@ public class Species implements Comparable<Species> {
 
     public void setCatchRate(int catchRate) {
         this.catchRate = catchRate;
+    }
+
+    public int getEvHpYield() {
+        return evHpYield;
+    }
+
+    public void setEvHpYield(int evHpYield) {
+        this.evHpYield = evHpYield;
+    }
+
+    public int getEvAttackYield() {
+        return evAttackYield;
+    }
+
+    public void setEvAttackYield(int evAttackYield) {
+        this.evAttackYield = evAttackYield;
+    }
+
+    public int getEvDefenseYield() {
+        return evDefenseYield;
+    }
+
+    public void setEvDefenseYield(int evDefenseYield) {
+        this.evDefenseYield = evDefenseYield;
+    }
+
+    public int getEvSpatkYield() {
+        return evSpatkYield;
+    }
+
+    public void setEvSpatkYield(int evSpatkYield) {
+        this.evSpatkYield = evSpatkYield;
+    }
+
+    public int getEvSpdefYield() {
+        return evSpdefYield;
+    }
+
+    public void setEvSpdefYield(int evSpdefYield) {
+        this.evSpdefYield = evSpdefYield;
+    }
+    public int getEvSpeedYield() {
+        return evSpeedYield;
+    }
+
+    public void setEvSpeedYield(int evSpeedYield) {
+        this.evSpeedYield = evSpeedYield;
     }
 
     public int getExpYield() {

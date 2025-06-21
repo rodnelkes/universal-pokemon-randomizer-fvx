@@ -73,6 +73,16 @@ public class SpeciesBaseStatRandomizer extends Randomizer {
         changesMade = true;
     }
 
+    public void randomizeEvYields() {
+        if (settings.isRandomizeEVYields()) {
+            for (Species poke : romHandler.getSpeciesInclFormes()) {
+                if (poke != null)
+                    poke.randomizeEvYields(random);
+            }
+        }
+        changesMade = true;
+    }
+
     public void standardizeEXPCurves() {
         Settings.ExpCurveMod mod = settings.getExpCurveMod();
         ExpCurve expCurve = settings.getSelectedEXPCurve();

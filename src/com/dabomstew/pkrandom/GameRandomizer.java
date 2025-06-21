@@ -253,6 +253,7 @@ public class GameRandomizer {
         maybeRandomizeSpeciesTypes();
         maybeRandomizeWildHeldItems();
         maybeRandomizeSpeciesBaseStats();
+        maybeRandomizeEVYields();
         maybeRandomizeSpeciesAbilities();
 
         maybeApplyEvolutionImprovements();
@@ -376,6 +377,12 @@ public class GameRandomizer {
             case RANDOM:
             case RANDOM_COMPLETELY:
                 speciesBSRandomizer.randomizeSpeciesStats();
+        }
+    }
+
+    private void maybeRandomizeEVYields() {
+        if (settings.isRandomizeEVYields()) {
+            speciesBSRandomizer.randomizeEvYields();
         }
     }
 
