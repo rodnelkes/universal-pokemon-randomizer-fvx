@@ -37,7 +37,7 @@ public class SpeciesBaseStatRandomizer extends Randomizer {
 
     private BasicSpeciesAction<Species> evaluateBpActions(boolean randomizeStatsCompletely) {
         if (randomizeStatsCompletely) {
-            return pk -> pk.randomizeStatsCompletely(random);
+            return pk -> pk.randomizeStatsCompletely(random, romHandler.generationOfPokemon() == 1);
         } else {
             return pk -> pk.randomizeStatsWithinBST(random);
         }

@@ -144,16 +144,25 @@ public class Species implements Comparable<Species> {
         return (int) Math.round(baseStatWeight * 254) + 1;
     }
 
-    public void randomizeStatsCompletely(Random random) {
+    public void randomizeStatsCompletely(Random random, boolean isGen1) {
         double hpW = random.nextDouble(), atkW = random.nextDouble(), defW = random.nextDouble(),
-                spaW = random.nextDouble(), spdW = random.nextDouble(), speW = random.nextDouble();
+                speW = random.nextDouble();
 
         hp = randomBS(hpW);
         attack = randomBS(atkW);
         defense = randomBS(defW);
-        spatk = randomBS(spaW);
-        spdef = randomBS(spdW);
         speed = randomBS(speW);
+
+        if (isGen1) {
+            double specialW = random.nextDouble();
+
+            special = randomBS(specialW);
+        } else {
+            double spaW = random.nextDouble(), spdW = random.nextDouble();
+
+            spatk = randomBS(spaW);
+            spdef = randomBS(spdW);
+        }
     }
 
     private int randomEvYield(double evYieldWeight) {
