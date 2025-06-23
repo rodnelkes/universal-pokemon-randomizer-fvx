@@ -93,6 +93,7 @@ public class GameRandomizer {
 
     private final IntroPokemonRandomizer introPokeRandomizer;
     private final SpeciesBaseStatRandomizer speciesBSRandomizer;
+    private final SpeciesMoreRandomizer speciesMoreRandomizer;
     private final SpeciesTypeRandomizer speciesTypeRandomizer;
     private final SpeciesAbilityRandomizer speciesAbilityRandomizer;
     private final EvolutionRandomizer evoRandomizer;
@@ -124,6 +125,7 @@ public class GameRandomizer {
 
         this.introPokeRandomizer = new IntroPokemonRandomizer(romHandler, settings, randomSource.getNonCosmetic());
         this.speciesBSRandomizer = new SpeciesBaseStatRandomizer(romHandler, settings, randomSource.getNonCosmetic());
+        this.speciesMoreRandomizer = new SpeciesMoreRandomizer(romHandler, settings, randomSource.getNonCosmetic());
         this.speciesTypeRandomizer = new SpeciesTypeRandomizer(romHandler, settings, randomSource.getNonCosmetic());
         this.speciesAbilityRandomizer = new SpeciesAbilityRandomizer(romHandler, settings, randomSource.getNonCosmetic());
         this.evoRandomizer = new EvolutionRandomizer(romHandler, settings, randomSource.getNonCosmetic());
@@ -383,13 +385,13 @@ public class GameRandomizer {
 
     private void maybeRandomizeEVYields() {
         if (settings.isRandomizeEVYields()) {
-            speciesBSRandomizer.randomizeEvYields();
+            speciesMoreRandomizer.randomizeEvYields();
         }
     }
 
     private void maybeRandomizeCatchRate() {
         if (settings.isRandomizeCatchRate()) {
-            speciesBSRandomizer.randomizeCatchRate();
+            speciesMoreRandomizer.randomizeCatchRate();
         }
     }
 
