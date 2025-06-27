@@ -581,6 +581,7 @@ public class Gen2RomHandler extends AbstractGBCRomHandler {
             pkmn.setSecondaryType(null);
         }
         pkmn.setCatchRate(rom[offset + Gen2Constants.bsCatchRateOffset] & 0xFF);
+        pkmn.setBaseExpYield(rom[offset + Gen2Constants.bsBaseExpYield] & 0xFF);
         pkmn.setGuaranteedHeldItem(-1);
         pkmn.setCommonHeldItem(rom[offset + Gen2Constants.bsCommonHeldItemOffset] & 0xFF);
         pkmn.setRareHeldItem(rom[offset + Gen2Constants.bsRareHeldItemOffset] & 0xFF);
@@ -602,7 +603,7 @@ public class Gen2RomHandler extends AbstractGBCRomHandler {
                 : Gen2Constants.typeToByte(pkmn.getSecondaryType(false));
         writeByte(offset + Gen2Constants.bsSecondaryTypeOffset, secondaryTypeByte);
         writeByte(offset + Gen2Constants.bsCatchRateOffset, (byte) pkmn.getCatchRate());
-
+        writeByte(offset + Gen2Constants.bsBaseExpYield, (byte) pkmn.getBaseExpYield());
         writeByte(offset + Gen2Constants.bsCommonHeldItemOffset, (byte) pkmn.getCommonHeldItem());
         writeByte(offset + Gen2Constants.bsRareHeldItemOffset, (byte) pkmn.getRareHeldItem());
         writeByte(offset + Gen2Constants.bsGrowthCurveOffset, pkmn.getGrowthCurve().toByte());

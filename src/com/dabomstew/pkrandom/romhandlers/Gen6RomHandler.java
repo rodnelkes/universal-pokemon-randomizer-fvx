@@ -273,6 +273,8 @@ public class Gen6RomHandler extends Abstract3DSRomHandler {
             pkmn.setAbility2(0);
         }
 
+        pkmn.setBaseExpYield(FileFunctions.read2ByteInt(stats, Gen6Constants.bsBaseExpYieldOffset));
+
         // Held Items?
         int item1 = FileFunctions.read2ByteInt(stats, Gen6Constants.bsCommonHeldItemOffset);
         int item2 = FileFunctions.read2ByteInt(stats, Gen6Constants.bsRareHeldItemOffset);
@@ -645,6 +647,8 @@ public class Gen6RomHandler extends Abstract3DSRomHandler {
         stats[Gen6Constants.bsAbility1Offset] = (byte) pkmn.getAbility1();
         stats[Gen6Constants.bsAbility2Offset] = pkmn.getAbility2() != 0 ? (byte) pkmn.getAbility2() : (byte) pkmn.getAbility1();
         stats[Gen6Constants.bsAbility3Offset] = (byte) pkmn.getAbility3();
+
+        FileFunctions.write2ByteInt(stats, Gen6Constants.bsBaseExpYieldOffset, pkmn.getBaseExpYield());
 
         // Held items
         if (pkmn.getGuaranteedHeldItem() > 0) {

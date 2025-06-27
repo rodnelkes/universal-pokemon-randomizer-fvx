@@ -78,7 +78,7 @@ public class Species implements Comparable<Species> {
     private int evSpatkYield;
     private int evSpdefYield;
     private int evSpeedYield;
-    private int expYield;
+    private int baseExpYield;
 
     private int guaranteedHeldItem;
     private int commonHeldItem;
@@ -186,6 +186,10 @@ public class Species implements Comparable<Species> {
         catchRate = randomBS(catchRateW);
     }
 
+    public void randomizeBaseExpYield(Random random, int max) {
+        double baseExpYieldW = random.nextDouble();
+        baseExpYield = (int) Math.round(baseExpYieldW * (max - 1)) + 1;
+    }
 
     public void randomizeStatsWithinBST(Random random) {
         if (number == SpeciesIDs.shedinja) {
@@ -1036,12 +1040,12 @@ public class Species implements Comparable<Species> {
         this.evSpeedYield = evSpeedYield;
     }
 
-    public int getExpYield() {
-        return expYield;
+    public int getBaseExpYield() {
+        return baseExpYield;
     }
 
-    public void setExpYield(int expYield) {
-        this.expYield = expYield;
+    public void setBaseExpYield(int baseExpYield) {
+        this.baseExpYield = baseExpYield;
     }
 
     public int getGuaranteedHeldItem() {

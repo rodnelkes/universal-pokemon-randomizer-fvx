@@ -31,4 +31,24 @@ public class SpeciesMoreRandomizer extends Randomizer{
         }
         changesMade = true;
     }
+
+    public void randomizeBaseExpYield() {
+        if (settings.isRandomizeBaseExpYield()) {
+            int generation = romHandler.generationOfPokemon();
+            int maxBaseExpYield;
+
+            if (generation >= 1 && generation <= 4)
+                maxBaseExpYield = 255;
+            else if (generation >= 5 && generation <= 7)
+                maxBaseExpYield = 608;
+            else
+                throw new IllegalStateException("Must implement for newer generation: " + generation);
+
+            for (Species poke : romHandler.getSpeciesInclFormes()) {
+                if (poke != null)
+                    poke.randomizeBaseExpYield(random, maxBaseExpYield);
+            }
+        }
+        changesMade = true;
+    }
 }

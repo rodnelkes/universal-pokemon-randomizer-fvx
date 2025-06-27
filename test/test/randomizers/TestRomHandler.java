@@ -294,7 +294,7 @@ public class TestRomHandler extends AbstractRomHandler {
         copy.setAbility2(original.getAbility2());
         copy.setAbility3(original.getAbility3());
 
-        copy.setExpYield(original.getExpYield());
+        copy.setBaseExpYield(original.getBaseExpYield());
 
         //wild encounter related
         copy.setCatchRate(original.getCatchRate());

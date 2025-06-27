@@ -208,7 +208,8 @@ public class Gen6Constants {
             bsCatchRateOffset = 8, bsEVYieldOffset = 10, bsCommonHeldItemOffset = 12, bsRareHeldItemOffset = 14,
             bsDarkGrassHeldItemOffset = 16, bsGenderOffset = 18, bsGrowthCurveOffset = 21, bsAbility1Offset = 24,
             bsAbility2Offset = 25, bsAbility3Offset = 26, bsFormeOffset = 28, bsFormeSpriteOffset = 30,
-            bsFormeCountOffset = 32, bsTMHMCompatOffset = 40, bsSpecialMTCompatOffset = 56, bsMTCompatOffset = 64;
+            bsFormeCountOffset = 32, bsBaseExpYieldOffset = 34, bsTMHMCompatOffset = 40, bsSpecialMTCompatOffset = 56,
+            bsMTCompatOffset = 64;
 
     private static final int bsSizeXY = 0x40;
     private static final int bsSizeORAS = 0x50;

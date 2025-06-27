@@ -1069,6 +1069,7 @@ public class Gen3RomHandler extends AbstractGBRomHandler {
             pkmn.setSecondaryType(null);
         }
         pkmn.setCatchRate(rom[offset + Gen3Constants.bsCatchRateOffset] & 0xFF);
+        pkmn.setBaseExpYield(rom[offset + Gen3Constants.bsBaseExpYield] & 0xFF);
 
         // EV Yield
         int evYields = readWord(offset + Gen3Constants.bsEVYieldOffset);
@@ -1115,6 +1116,7 @@ public class Gen3RomHandler extends AbstractGBRomHandler {
                 pkmn.getSecondaryType(false) == null ? pkmn.getPrimaryType(false) : pkmn.getSecondaryType(false)
         ));
         writeByte(offset + Gen3Constants.bsCatchRateOffset, (byte) pkmn.getCatchRate());
+        writeByte(offset + Gen3Constants.bsBaseExpYield, (byte) pkmn.getBaseExpYield());
 
         // EV Yield
         int evYields = (pkmn.getEvHpYield() & 0x3)

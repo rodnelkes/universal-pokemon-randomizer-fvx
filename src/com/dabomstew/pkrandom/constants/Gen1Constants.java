@@ -40,7 +40,7 @@ public class Gen1Constants {
 
 	public static final int bsHPOffset = 1, bsAttackOffset = 2, bsDefenseOffset = 3, bsSpeedOffset = 4,
 			bsSpecialOffset = 5, bsPrimaryTypeOffset = 6, bsSecondaryTypeOffset = 7, bsCatchRateOffset = 8,
-			bsExpYieldOffset = 9, bsFrontImageDimensionsOffset = 10, bsFrontImagePointerOffset = 11,
+			bsBaseExpYieldOffset = 9, bsFrontImageDimensionsOffset = 10, bsFrontImagePointerOffset = 11,
             bsBackImagePointerOffset = 13, bsLevel1MovesOffset = 15, bsGrowthCurveOffset = 19, bsTMHMCompatOffset = 20;
 
     public static final int encounterTableEnd = 0xFFFF, encounterTableSize = 10, yellowSuperRodTableSize = 4;

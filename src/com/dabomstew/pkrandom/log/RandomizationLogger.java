@@ -588,6 +588,7 @@ public class RandomizationLogger {
                     getBS("Log.psta.evSpdef"), getBS("Log.psta.evSpeed"));
         }
         log.printf("|%10s", getBS("Log.psta.catchRate"));
+        log.printf("|%9s", getBS("Log.psta.baseExpYield"));
         for (int i = 0; i < romHandler.abilitiesPerSpecies(); i++) {
             log.printf("|%-" + abilityLen + "s", getBS("Log.psta.ability" + (i + 1)));
         }
@@ -625,6 +626,7 @@ public class RandomizationLogger {
                         pk.getEvSpdefYield(), pk.getEvSpeedYield());
             }
             log.printf("|%10d", pk.getCatchRate());
+            log.printf("|%9d", pk.getBaseExpYield());
             if (romHandler.abilitiesPerSpecies() >= 1) {
                 log.printf("|%-" + abilityLen + "s", romHandler.abilityName(pk.getAbility1()));
             }

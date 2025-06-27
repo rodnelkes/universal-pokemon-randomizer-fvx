@@ -715,6 +715,7 @@ public class Gen4RomHandler extends AbstractDSRomHandler {
 			pkmn.setSecondaryType(null);
 		}
 		pkmn.setCatchRate(stats[Gen4Constants.bsCatchRateOffset] & 0xFF);
+		pkmn.setBaseExpYield(stats[Gen4Constants.bsBaseExpYieldOffset] & 0xFF);
 
 		// EV Yield
 		int evYields = readWord(stats, Gen4Constants.bsEVYieldOffset);
@@ -871,6 +872,7 @@ public class Gen4RomHandler extends AbstractDSRomHandler {
 			stats[Gen4Constants.bsSecondaryTypeOffset] = Gen4Constants.typeToByte(pkmn.getSecondaryType(false));
 		}
 		stats[Gen4Constants.bsCatchRateOffset] = (byte) pkmn.getCatchRate();
+		stats[Gen4Constants.bsBaseExpYieldOffset] = (byte) pkmn.getBaseExpYield();
 
 		// EV Yield
 		int evYields = (pkmn.getEvHpYield() & 0x3)

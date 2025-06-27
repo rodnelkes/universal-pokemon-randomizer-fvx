@@ -599,7 +599,7 @@ public class Gen1RomHandler extends AbstractGBCRomHandler {
         }
 
         pkmn.setCatchRate(rom[offset + Gen1Constants.bsCatchRateOffset] & 0xFF);
-        pkmn.setExpYield(rom[offset + Gen1Constants.bsExpYieldOffset] & 0xFF);
+        pkmn.setBaseExpYield(rom[offset + Gen1Constants.bsBaseExpYieldOffset] & 0xFF);
         pkmn.setGrowthCurve(ExpCurve.fromByte(rom[offset + Gen1Constants.bsGrowthCurveOffset]));
         pkmn.setFrontImageDimensions(rom[offset + Gen1Constants.bsFrontImageDimensionsOffset] & 0xFF);
         pkmn.setFrontImagePointer(readWord(offset + Gen1Constants.bsFrontImagePointerOffset));
@@ -622,8 +622,8 @@ public class Gen1RomHandler extends AbstractGBCRomHandler {
                 : Gen1Constants.typeToByte(pkmn.getSecondaryType(false));
         writeByte(offset + Gen1Constants.bsSecondaryTypeOffset, secondaryTypeByte);
         writeByte(offset + Gen1Constants.bsCatchRateOffset, (byte) pkmn.getCatchRate());
+        writeByte(offset + Gen1Constants.bsBaseExpYieldOffset, (byte) pkmn.getBaseExpYield());
         writeByte(offset + Gen1Constants.bsGrowthCurveOffset, pkmn.getGrowthCurve().toByte());
-        writeByte(offset + Gen1Constants.bsExpYieldOffset, (byte) pkmn.getExpYield());
     }
 
     private String[] readPokemonNames() {
