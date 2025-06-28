@@ -38,8 +38,12 @@ public class SpeciesMoreRandomizer extends Randomizer{
             int maxBaseExpYield;
 
             if (generation >= 1 && generation <= 4)
+                // The max value for this field's data type is 255 since it is a u8 in these generations.
                 maxBaseExpYield = 255;
             else if (generation >= 5 && generation <= 7)
+                // Since the data type for this field changed to a u16 in Gen5 and beyond, the new max value is 65535.
+                // This value is way too high considering the Pokemon with the highest value is held by Chansey with
+                // 608. Chansey's yield is what I chose instead.
                 maxBaseExpYield = 608;
             else
                 throw new IllegalStateException("Must implement for newer generation: " + generation);
