@@ -589,6 +589,9 @@ public class RandomizationLogger {
         }
         log.printf("|%10s", getBS("Log.psta.catchRate"));
         log.printf("|%9s", getBS("Log.psta.baseExpYield"));
+        if (romHandler.generationOfPokemon() >= 5) {
+            log.printf("|%6s|%6s", getBS("Log.psta.height"), getBS("Log.psta.weight"));
+        }
         for (int i = 0; i < romHandler.abilitiesPerSpecies(); i++) {
             log.printf("|%-" + abilityLen + "s", getBS("Log.psta.ability" + (i + 1)));
         }
@@ -627,6 +630,9 @@ public class RandomizationLogger {
             }
             log.printf("|%10d", pk.getCatchRate());
             log.printf("|%9d", pk.getBaseExpYield());
+            if (romHandler.generationOfPokemon() >= 5) {
+                log.printf("|%6d|%6d", pk.getHeight(), pk.getWeight());
+            }
             if (romHandler.abilitiesPerSpecies() >= 1) {
                 log.printf("|%-" + abilityLen + "s", romHandler.abilityName(pk.getAbility1()));
             }

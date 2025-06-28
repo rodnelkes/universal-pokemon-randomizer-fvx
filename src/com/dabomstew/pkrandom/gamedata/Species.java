@@ -79,6 +79,8 @@ public class Species implements Comparable<Species> {
     private int evSpdefYield;
     private int evSpeedYield;
     private int baseExpYield;
+    private int height;
+    private int weight;
 
     private int guaranteedHeldItem;
     private int commonHeldItem;
@@ -189,6 +191,16 @@ public class Species implements Comparable<Species> {
     public void randomizeBaseExpYield(Random random, int max) {
         double baseExpYieldW = random.nextDouble();
         baseExpYield = (int) Math.round(baseExpYieldW * (max - 1)) + 1;
+    }
+
+    public void randomizeHeight(Random random) {
+        double heightW = random.nextDouble();
+        height = ((int) Math.round(heightW * 998) + 1) * 10;
+    }
+
+    public void randomizeWeight(Random random) {
+        double weightW = random.nextDouble();
+        weight = (int) Math.round(weightW * 9998) + 1;
     }
 
     public void randomizeStatsWithinBST(Random random) {
@@ -1046,6 +1058,22 @@ public class Species implements Comparable<Species> {
 
     public void setBaseExpYield(int baseExpYield) {
         this.baseExpYield = baseExpYield;
+    }
+
+    public int getHeight() {
+        return height;
+    }
+
+    public void setHeight(int height) {
+        this.height = height;
+    }
+
+    public int getWeight() {
+        return weight;
+    }
+
+    public void setWeight(int weight) {
+        this.weight = weight;
     }
 
     public int getGuaranteedHeldItem() {

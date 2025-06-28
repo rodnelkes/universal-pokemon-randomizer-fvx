@@ -55,4 +55,24 @@ public class SpeciesMoreRandomizer extends Randomizer{
         }
         changesMade = true;
     }
+
+    public void randomizeHeight() {
+        if (settings.isRandomizeHeight()) {
+            for (Species poke : romHandler.getSpeciesInclFormes()) {
+                if (poke != null)
+                    poke.randomizeHeight(random);
+            }
+        }
+        changesMade = true;
+    }
+
+    public void randomizeWeight() {
+        if (settings.isRandomizeWeight()) {
+            for (Species poke : romHandler.getSpeciesInclFormes()) {
+                if (poke != null)
+                    poke.randomizeWeight(random);
+            }
+        }
+        changesMade = true;
+    }
 }

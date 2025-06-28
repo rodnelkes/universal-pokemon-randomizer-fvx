@@ -380,6 +380,8 @@ public class Gen5RomHandler extends AbstractDSRomHandler {
         pkmn.setAbility3(stats[Gen5Constants.bsAbility3Offset] & 0xFF);
 
         pkmn.setBaseExpYield(readWord(stats, Gen5Constants.bsBaseExpYield));
+        pkmn.setHeight(readWord(stats, Gen5Constants.bsHeightOffset));
+        pkmn.setWeight(readWord(stats, Gen5Constants.bsWeightOffset));
 
         // Held Items?
         int item1 = readWord(stats, Gen5Constants.bsCommonHeldItemOffset);
@@ -539,7 +541,9 @@ public class Gen5RomHandler extends AbstractDSRomHandler {
         stats[Gen5Constants.bsAbility2Offset] = (byte) pkmn.getAbility2();
         stats[Gen5Constants.bsAbility3Offset] = (byte) pkmn.getAbility3();
 
-        writeWord(stats, Gen5Constants.bsBaseExpYield, (byte) pkmn.getBaseExpYield());
+        writeWord(stats, Gen5Constants.bsBaseExpYield, pkmn.getBaseExpYield());
+        writeWord(stats, Gen5Constants.bsHeightOffset, pkmn.getHeight());
+        writeWord(stats, Gen5Constants.bsWeightOffset, pkmn.getWeight());
 
         // Held items
         if (pkmn.getGuaranteedHeldItem() > 0) {

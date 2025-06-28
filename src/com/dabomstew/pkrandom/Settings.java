@@ -87,6 +87,8 @@ public class Settings {
     private boolean randomizeEVYields;
     private boolean randomizeCatchRate;
     private boolean randomizeBaseExpYield;
+    private boolean randomizeHeight;
+    private boolean randomizeWeight;
     private boolean standardizeEXPCurves;
     private ExpCurve selectedEXPCurve;
     private ExpCurveMod expCurveMod = ExpCurveMod.LEGENDARIES;
@@ -712,7 +714,7 @@ public class Settings {
 
         // 62 more randomization
         out.write(makeByteSelected(baseStatisticsMod == BaseStatisticsMod.RANDOM_COMPLETELY, randomizeEVYields,
-                randomizeCatchRate, randomizeBaseExpYield));
+                randomizeCatchRate, randomizeBaseExpYield, randomizeHeight, randomizeWeight));
 
         try {
             byte[] romName = this.romName.getBytes(StandardCharsets.US_ASCII);
@@ -1071,6 +1073,8 @@ public class Settings {
         settings.setRandomizeEVYields(restoreState(data[62], 1));
         settings.setRandomizeCatchRate(restoreState(data[62], 2));
         settings.setRandomizeBaseExpYield(restoreState(data[62], 3));
+        settings.setRandomizeHeight(restoreState(data[62], 4));
+        settings.setRandomizeWeight(restoreState(data[62], 5));
 
         int romNameLength = data[LENGTH_OF_SETTINGS_DATA] & 0xFF;
         String romName = new String(data, LENGTH_OF_SETTINGS_DATA + 1, romNameLength, StandardCharsets.US_ASCII);
@@ -1450,6 +1454,22 @@ public class Settings {
 
     public void setRandomizeBaseExpYield(boolean randomizeBaseExpYield) {
         this.randomizeBaseExpYield = randomizeBaseExpYield;
+    }
+
+    public boolean isRandomizeHeight() {
+        return randomizeHeight;
+    }
+
+    public void setRandomizeHeight(boolean randomizeHeight) {
+        this.randomizeHeight = randomizeHeight;
+    }
+
+    public boolean isRandomizeWeight() {
+        return randomizeWeight;
+    }
+
+    public void setRandomizeWeight(boolean randomizeWeight) {
+        this.randomizeWeight = randomizeWeight;
     }
 
     public AbilitiesMod getAbilitiesMod() {

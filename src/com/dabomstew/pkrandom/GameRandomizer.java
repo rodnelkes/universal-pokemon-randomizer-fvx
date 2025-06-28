@@ -258,6 +258,8 @@ public class GameRandomizer {
         maybeRandomizeEVYields();
         maybeRandomizeCatchRate();
         maybeRandomizeBaseExpYield();
+        maybeRandomizeHeight();
+        maybeRandomizeWeight();
         maybeRandomizeSpeciesAbilities();
 
         maybeApplyEvolutionImprovements();
@@ -399,6 +401,18 @@ public class GameRandomizer {
     private void maybeRandomizeBaseExpYield() {
         if (settings.isRandomizeBaseExpYield()) {
             speciesMoreRandomizer.randomizeBaseExpYield();
+        }
+    }
+
+    private void maybeRandomizeHeight() {
+        if (settings.isRandomizeHeight()) {
+            speciesMoreRandomizer.randomizeHeight();
+        }
+    }
+
+    private void maybeRandomizeWeight() {
+        if (settings.isRandomizeWeight()) {
+            speciesMoreRandomizer.randomizeWeight();
         }
     }
 

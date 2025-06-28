@@ -50,7 +50,8 @@ public class Gen5Constants {
             bsCatchRateOffset = 8, bsEVYieldOffset = 10, bsCommonHeldItemOffset = 12, bsRareHeldItemOffset = 14,
             bsDarkGrassHeldItemOffset = 16, bsGenderRatioOffset = 18, bsGrowthCurveOffset = 21, bsAbility1Offset = 24,
             bsAbility2Offset = 25, bsAbility3Offset = 26, bsFormeOffset = 28, bsFormeSpriteOffset = 30,
-            bsFormeCountOffset = 32, bsBaseExpYield = 34, bsTMHMCompatOffset = 40, bsMTCompatOffset = 60;
+            bsFormeCountOffset = 32, bsBaseExpYield = 34, bsHeightOffset = 36, bsWeightOffset = 38,
+            bsTMHMCompatOffset = 40, bsMTCompatOffset = 60;
 
     public static final byte[] bw1NewStarterScript = { 0x24, 0x00, (byte) 0xA7, 0x02, (byte) 0xE7, 0x00, 0x00, 0x00,
             (byte) 0xDE, 0x00, 0x00, 0x00, (byte) 0xF8, 0x01, 0x05, 0x00 };
