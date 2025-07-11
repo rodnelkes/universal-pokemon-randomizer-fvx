@@ -17,6 +17,9 @@ public class SpeciesBaseStatRandomizer extends Randomizer {
     private static final int SHEDINJA_HP = 1;
     protected static final int MIN_HP = 20;
     protected static final int MIN_NON_HP_STAT = 10;
+    private static final int CHANSEY_CATCH_RATE_GEN5 = 608;
+    private static final int MAX_HEIGHT = 999;
+    private static final int MAX_WEIGHT = 9990;
 
     public SpeciesBaseStatRandomizer(RomHandler romHandler, Settings settings, Random random) {
         super(romHandler, settings, random);
@@ -258,7 +261,7 @@ public class SpeciesBaseStatRandomizer extends Randomizer {
                 // Since the data type for this field changed to a u16 in Gen5 and beyond, the new max value is 65535.
                 // This value is way too high considering the Pokemon with the highest value is held by Chansey with
                 // 608. Chansey's yield is what I chose instead.
-                maxBaseExpYield = 608;
+                maxBaseExpYield = CHANSEY_CATCH_RATE_GEN5;
             else
                 throw new IllegalStateException("Invalid value for generation: " + generation);
 
@@ -274,7 +277,7 @@ public class SpeciesBaseStatRandomizer extends Randomizer {
         if (settings.isRandomizeHeight()) {
             for (Species poke : romHandler.getSpeciesSetInclFormes()) {
                 double heightW = random.nextDouble();
-                poke.setHeight(((int) Math.round(heightW * 998) + 1) * 10);
+                poke.setHeight(((int) Math.round(heightW * (MAX_HEIGHT - 1)) + 1) * 10);
             }
         }
         changesMade = true;
@@ -284,7 +287,7 @@ public class SpeciesBaseStatRandomizer extends Randomizer {
         if (settings.isRandomizeWeight()) {
             for (Species poke : romHandler.getSpeciesSetInclFormes()) {
                 double weightW = random.nextDouble();
-                poke.setWeight((int) Math.round(weightW * 9998) + 1);
+                poke.setWeight((int) Math.round(weightW * (MAX_WEIGHT - 1)) + 1);
             }
         }
         changesMade = true;
