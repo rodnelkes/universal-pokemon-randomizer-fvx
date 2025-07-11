@@ -628,7 +628,21 @@ public class RandomizationLogger {
             log.printf("|%10d", pk.getCatchRate());
             log.printf("|%9d", pk.getBaseExpYield());
             if (romHandler.generationOfPokemon() >= 5) {
-                log.printf("|%6d|%6d", pk.getHeight(), pk.getWeight());
+                double heightImperial = ((double) pk.getHeight() / 100) * 39.3701;
+                double heightInches = heightImperial / 12;
+                int actualFeet = (int) Math.floor(heightInches);
+                int actualInches = (int) Math.round((heightInches - actualFeet) * 12);
+
+                if (actualInches == 12) {
+                    actualFeet += 1;
+                    actualInches = 0;
+                }
+
+                String actualHeight = String.format("|%2d'%02d\"", actualFeet, actualInches);
+
+                double weightLbs = ((double) pk.getWeight() / 10) * 2.20462;
+
+                log.printf("%s|%6.1f", actualHeight, weightLbs);
             }
             if (romHandler.abilitiesPerSpecies() >= 1) {
                 log.printf("|%-" + abilityLen + "s", romHandler.abilityName(pk.getAbility1()));
