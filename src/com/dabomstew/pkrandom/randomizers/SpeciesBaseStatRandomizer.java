@@ -18,8 +18,8 @@ public class SpeciesBaseStatRandomizer extends Randomizer {
     protected static final int MIN_HP = 20;
     protected static final int MIN_NON_HP_STAT = 10;
     private static final int CHANSEY_CATCH_RATE_GEN5 = 608;
-    private static final int MAX_HEIGHT = 999;
-    private static final int MAX_WEIGHT = 9990;
+    private static final int WAILORD_HEIGHT_GEN7 = 1450;
+    private static final int MAX_WEIGHT_GEN7 = 9999;
 
     public SpeciesBaseStatRandomizer(RomHandler romHandler, Settings settings, Random random) {
         super(romHandler, settings, random);
@@ -277,7 +277,7 @@ public class SpeciesBaseStatRandomizer extends Randomizer {
         if (settings.isRandomizeHeight()) {
             for (Species poke : romHandler.getSpeciesSetInclFormes()) {
                 double heightW = random.nextDouble();
-                poke.setHeight(((int) Math.round(heightW * (MAX_HEIGHT - 1)) + 1) * 10);
+                poke.setHeight(((int) Math.round(heightW * ((double) WAILORD_HEIGHT_GEN7 / 10 - 1)) + 1) * 10);
             }
         }
         changesMade = true;
@@ -287,7 +287,7 @@ public class SpeciesBaseStatRandomizer extends Randomizer {
         if (settings.isRandomizeWeight()) {
             for (Species poke : romHandler.getSpeciesSetInclFormes()) {
                 double weightW = random.nextDouble();
-                poke.setWeight((int) Math.round(weightW * (MAX_WEIGHT - 1)) + 1);
+                poke.setWeight((int) Math.round(weightW * (MAX_WEIGHT_GEN7 - 1)) + 1);
             }
         }
         changesMade = true;
