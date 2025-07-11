@@ -221,7 +221,7 @@ public class SpeciesBaseStatRandomizer extends Randomizer {
 
     public void randomizeEvYields() {
         if (settings.isRandomizeEVYields()) {
-            for (Species poke : romHandler.getSpeciesInclFormes()) {
+            for (Species poke : romHandler.getSpeciesSetInclFormes()) {
                 double evHpYieldW = random.nextDouble(), evAttackYieldW = random.nextDouble(), evDefenseYieldW = random.nextDouble(),
                         evSpatkYieldW = random.nextDouble(), evSpdefYieldW = random.nextDouble(), evSpeedYieldW = random.nextDouble();
 
@@ -238,7 +238,7 @@ public class SpeciesBaseStatRandomizer extends Randomizer {
 
     public void randomizeCatchRate() {
         if (settings.isRandomizeCatchRate()) {
-            for (Species poke : romHandler.getSpeciesInclFormes()) {
+            for (Species poke : romHandler.getSpeciesSetInclFormes()) {
                 double catchRateW = random.nextDouble();
                 poke.setCatchRate(randomBS(catchRateW));
             }
@@ -262,7 +262,7 @@ public class SpeciesBaseStatRandomizer extends Randomizer {
             else
                 throw new IllegalStateException("Invalid value for generation: " + generation);
 
-            for (Species poke : romHandler.getSpeciesInclFormes()) {
+            for (Species poke : romHandler.getSpeciesSetInclFormes()) {
                 double baseExpYieldW = random.nextDouble();
                 poke.setCatchRate((int) Math.round(baseExpYieldW * (maxBaseExpYield - 1)) + 1);
             }
@@ -272,7 +272,7 @@ public class SpeciesBaseStatRandomizer extends Randomizer {
 
     public void randomizeHeight() {
         if (settings.isRandomizeHeight()) {
-            for (Species poke : romHandler.getSpeciesInclFormes()) {
+            for (Species poke : romHandler.getSpeciesSetInclFormes()) {
                 double heightW = random.nextDouble();
                 poke.setHeight(((int) Math.round(heightW * 998) + 1) * 10);
             }
@@ -282,7 +282,7 @@ public class SpeciesBaseStatRandomizer extends Randomizer {
 
     public void randomizeWeight() {
         if (settings.isRandomizeWeight()) {
-            for (Species poke : romHandler.getSpeciesInclFormes()) {
+            for (Species poke : romHandler.getSpeciesSetInclFormes()) {
                 double weightW = random.nextDouble();
                 poke.setWeight((int) Math.round(weightW * 9998) + 1);
             }
